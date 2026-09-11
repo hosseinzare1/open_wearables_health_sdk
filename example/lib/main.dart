@@ -31,12 +31,19 @@ class OWColors {
   static const buttonHover = Color(0xFFE4E4E7); // zinc-200
 }
 
+const _sentryDsn = String.fromEnvironment('SENTRY_DSN');
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  if (_sentryDsn.isEmpty) {
+    runApp(const MyApp());
+    return;
+  }
+
   await SentryFlutter.init((options) {
-    options.dsn = 'https://3d912364254042549967f3560053f841@sentry.mntm.dev/109';
-  }, appRunner: () => runApp(MyApp()));
+    options.dsn = _sentryDsn;
+  }, appRunner: () => runApp(const MyApp()));
 }
 
 // Simple in-memory logs (limited to 500 entries for performance)

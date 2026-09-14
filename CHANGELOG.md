@@ -1,3 +1,10 @@
+## 0.0.22
+
+* Bumped native Android SDK dependency from `v0.11.2` to `v0.12.0`.
+  - Health Connect now reads power, speed, cycling cadence, and total calories (previously dropped silently).
+  - Workout sessions include HR / power / speed / distance / calorie / cadence aggregates.
+  - Descending pagination no longer re-includes range records; record-count page size capped at Health Connect's 5000 limit.
+
 ## 0.0.21
 
 * Bumped native iOS SDK dependency from `~> 0.13.0` to `~> 0.14.0`.

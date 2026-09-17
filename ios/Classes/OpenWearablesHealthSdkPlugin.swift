@@ -72,7 +72,8 @@ public class OpenWearablesHealthSdkPlugin: NSObject, FlutterPlugin, FlutterStrea
                 result(FlutterError(code: "bad_args", message: "Missing host", details: nil))
                 return
             }
-            sdk.configure(host: host)
+            let tokenRefreshURL = args["tokenRefreshURL"] as? String
+            sdk.configure(host: host, tokenRefreshURL: tokenRefreshURL)
             result(nil)
 
         case "signIn":

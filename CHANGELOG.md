@@ -1,3 +1,13 @@
+## Unreleased
+
+## 0.0.23
+
+* Bumped native iOS SDK dependency from `~> 0.14.0` to `~> 0.15.0`.
+* **iOS workout effort** (#51): `HealthDataType` now includes `workoutEffortScore` and `estimatedWorkoutEffortScore` (iOS 18+), plus the iOS aliases `restingEnergy` and `bloodOxygen`.
+* **iOS tokenRefreshURL**: `configure(host:, tokenRefreshURL:)` forwards an optional absolute refresh endpoint to the native iOS SDK when the auth/mint server is not the sync host. Ignored on Android.
+* **iOS cycling metrics** (#44 / #63): `HealthDataType` now includes `cyclingPower`, `cyclingCadence`, `cyclingSpeed`, and `cyclingFunctionalThresholdPower` so `HealthDataType.values` requests them during HealthKit authorization.
+* **iOS running dynamics** (#13 / #55): `HealthDataType` now includes `runningPower`, `runningVerticalOscillation`, and `runningGroundContactTime` so `HealthDataType.values` requests them during HealthKit authorization.
+
 ## 0.0.22
 
 * Bumped native Android SDK dependency from `v0.11.2` to `v0.12.0`.

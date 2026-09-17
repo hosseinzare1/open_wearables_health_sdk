@@ -47,9 +47,10 @@ class MethodChannelOpenWearablesHealthSdk extends OpenWearablesHealthSdkPlatform
   static Stream<Map<String, dynamic>> get authErrorStream => _authErrorController.stream;
 
   @override
-  Future<bool> configure({required String host}) async {
+  Future<bool> configure({required String host, String? tokenRefreshURL}) async {
     await _channel.invokeMethod<void>('configure', {
       'host': host,
+      if (tokenRefreshURL != null) 'tokenRefreshURL': tokenRefreshURL,
     });
 
     // Check if sync was auto-restored by querying isSyncActive

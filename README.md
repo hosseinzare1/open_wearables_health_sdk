@@ -22,7 +22,7 @@ A Flutter plugin for secure background health data synchronization from **Apple 
 
 ```yaml
 dependencies:
-  open_wearables_health_sdk: ^0.0.15
+  open_wearables_health_sdk: ^0.0.23
 ```
 
 ### 2. iOS Configuration
@@ -166,6 +166,7 @@ For testing on Samsung devices, enable Developer Mode in Samsung Health: Setting
 ```dart
 await OpenWearablesHealthSdk.configure(
   host: 'https://api.example.com',
+  // tokenRefreshURL: 'https://auth.example.com/token/refresh', // iOS only
 );
 
 // Session is automatically restored if user was previously signed in
@@ -262,7 +263,7 @@ When you provide a `host` (e.g. `https://api.example.com`), the SDK constructs e
 | Health data sync | `{host}/api/v1/sdk/users/{userId}/sync` |
 | Token refresh | `{host}/api/v1/token/refresh` |
 
-You can also provide a `customSyncUrl` during `configure()` to override the sync endpoint.
+On iOS you can pass `tokenRefreshURL` to `configure()` when the auth/mint server is not the sync host. Omitted or blank keeps `{host}/api/v1/token/refresh`.
 
 ---
 
@@ -354,11 +355,16 @@ class HealthService {
 | Category | Types |
 |----------|-------|
 | **Activity** | distanceCycling, walkingSpeed, walkingStepLength, walkingAsymmetryPercentage, walkingDoubleSupportPercentage, sixMinuteWalkTestDistance |
+| **Energy** | restingEnergy (alias of basalEnergy) |
+| **Heart** | bloodOxygen (alias of oxygenSaturation) |
 | **Body** | bmi, waistCircumference (iOS 16+) |
 | **Glucose** | insulinDelivery (iOS 16+) |
 | **Nutrition** | dietaryEnergyConsumed, dietaryCarbohydrates, dietaryProtein, dietaryFatTotal |
 | **Sleep** | mindfulSession |
 | **Reproductive** | menstrualFlow, cervicalMucusQuality, ovulationTestResult, sexualActivity |
+| **Running** | runningPower, runningVerticalOscillation, runningGroundContactTime (iOS 16+) |
+| **Cycling** | cyclingPower, cyclingCadence, cyclingSpeed, cyclingFunctionalThresholdPower (iOS 17+) |
+| **Workouts** | workoutEffortScore, estimatedWorkoutEffortScore (iOS 18+) |
 
 ### Android only
 
@@ -376,7 +382,7 @@ class HealthService {
 
 | Method | Description |
 |--------|-------------|
-| `configure({required host, customSyncUrl?})` | Initialize SDK with host URL and restore session |
+| `configure({required host, tokenRefreshURL?})` | Initialize SDK with host URL and restore session |
 | `signIn({userId, accessToken?, refreshToken?, apiKey?})` | Sign in with tokens or API key |
 | `signOut()` | Sign out and clear all credentials |
 | `updateTokens({accessToken, refreshToken?})` | Update tokens without re-signing in |

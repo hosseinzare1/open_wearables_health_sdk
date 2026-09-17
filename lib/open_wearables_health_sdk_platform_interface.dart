@@ -19,7 +19,10 @@ abstract class OpenWearablesHealthSdkPlatform extends PlatformInterface {
 
   /// Configures the plugin with the host URL.
   /// Returns true if sync was auto-restored (session + sync was active).
-  Future<bool> configure({required String host}) {
+  ///
+  /// [tokenRefreshURL] is forwarded to the iOS SDK when the auth server is
+  /// not the sync host. Ignored on Android.
+  Future<bool> configure({required String host, String? tokenRefreshURL}) {
     throw UnimplementedError('configure() has not been implemented.');
   }
 

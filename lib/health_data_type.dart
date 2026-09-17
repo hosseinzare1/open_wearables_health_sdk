@@ -14,6 +14,7 @@ enum HealthDataType {
   // Energy
   activeEnergy,
   basalEnergy,
+  restingEnergy, // alias of basalEnergy on iOS
 
   // Heart
   heartRate,
@@ -21,6 +22,7 @@ enum HealthDataType {
   heartRateVariabilitySDNN,
   vo2Max,
   oxygenSaturation,
+  bloodOxygen, // alias of oxygenSaturation on iOS
   // Respiratory
   respiratoryRate,
 
@@ -40,7 +42,7 @@ enum HealthDataType {
   bloodPressureSystolic,
   bloodPressureDiastolic,
   bloodPressure, // correlation
-  // Nutrition (examples)
+  // Nutrition
   dietaryEnergyConsumed,
   dietaryCarbohydrates,
   dietaryProtein,
@@ -57,8 +59,21 @@ enum HealthDataType {
   ovulationTestResult,
   sexualActivity,
 
+  // Running dynamics (iOS 16+)
+  runningPower,
+  runningVerticalOscillation,
+  runningGroundContactTime,
+
+  // Cycling (iOS 17+)
+  cyclingPower,
+  cyclingCadence,
+  cyclingSpeed,
+  cyclingFunctionalThresholdPower,
+
   // Workouts
   workout,
+  workoutEffortScore, // iOS 18+
+  estimatedWorkoutEffortScore, // iOS 18+
 }
 
 extension HealthDataTypeId on HealthDataType {
@@ -89,6 +104,8 @@ extension HealthDataTypeId on HealthDataType {
         return 'activeEnergy';
       case HealthDataType.basalEnergy:
         return 'basalEnergy';
+      case HealthDataType.restingEnergy:
+        return 'restingEnergy';
 
       // Heart
       case HealthDataType.heartRate:
@@ -101,6 +118,8 @@ extension HealthDataTypeId on HealthDataType {
         return 'vo2Max';
       case HealthDataType.oxygenSaturation:
         return 'oxygenSaturation';
+      case HealthDataType.bloodOxygen:
+        return 'bloodOxygen';
 
       // Respiratory
       case HealthDataType.respiratoryRate:
@@ -164,9 +183,31 @@ extension HealthDataTypeId on HealthDataType {
       case HealthDataType.sexualActivity:
         return 'sexualActivity';
 
+      // Running dynamics (iOS 16+)
+      case HealthDataType.runningPower:
+        return 'runningPower';
+      case HealthDataType.runningVerticalOscillation:
+        return 'runningVerticalOscillation';
+      case HealthDataType.runningGroundContactTime:
+        return 'runningGroundContactTime';
+
+      // Cycling (iOS 17+)
+      case HealthDataType.cyclingPower:
+        return 'cyclingPower';
+      case HealthDataType.cyclingCadence:
+        return 'cyclingCadence';
+      case HealthDataType.cyclingSpeed:
+        return 'cyclingSpeed';
+      case HealthDataType.cyclingFunctionalThresholdPower:
+        return 'cyclingFunctionalThresholdPower';
+
       // Workouts
       case HealthDataType.workout:
         return 'workout';
+      case HealthDataType.workoutEffortScore:
+        return 'workoutEffortScore';
+      case HealthDataType.estimatedWorkoutEffortScore:
+        return 'estimatedWorkoutEffortScore';
     }
   }
 }

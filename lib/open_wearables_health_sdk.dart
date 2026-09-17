@@ -76,6 +76,9 @@ class OpenWearablesHealthSdk {
   ///
   /// - [host]: The host URL for the API (e.g. `https://api.example.com`).
   ///   Only the host part — the SDK appends `/api/v1/...` paths automatically.
+  /// - [tokenRefreshURL]: Optional absolute refresh endpoint on iOS when the
+  ///   auth/mint server is not the sync host. Omitted or blank keeps
+  ///   `{host}/api/v1/token/refresh`. Ignored on Android.
   ///
   /// ```dart
   /// await OpenWearablesHealthSdk.configure(
@@ -89,13 +92,20 @@ class OpenWearablesHealthSdk {
   /// ```
   static Future<void> configure({
     required String host,
+    String? tokenRefreshURL,
   }) async {
-    _config = OpenWearablesHealthSdkConfig(host: host);
+    _config = OpenWearablesHealthSdkConfig(
+      host: host,
+      tokenRefreshURL: tokenRefreshURL,
+    );
 
     _updateLogSubscription();
 
     // Configure and check if sync was auto-restored
-    _isSyncActive = await _platform.configure(host: host);
+    _isSyncActive = await _platform.configure(
+      host: host,
+      tokenRefreshURL: tokenRefreshURL,
+    );
 
     // Try to restore existing session from Keychain
     final restoredUserId = await _platform.restoreSession();

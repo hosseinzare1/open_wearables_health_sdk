@@ -1,5 +1,10 @@
 ## Unreleased
 
+## 0.0.24
+
+* Migrates the Android Gradle build to AGP 9 built-in Kotlin (removes the legacy `kotlin-android` plugin).
+* Requires Flutter 3.44+ / Dart 3.12+ for Android builds on AGP 9 hosts.
+
 ## 0.0.23
 
 * Bumped native iOS SDK dependency from `~> 0.14.0` to `~> 0.15.0`.

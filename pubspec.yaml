@@ -1,9 +1,9 @@
 name: open_wearables_health_sdk
 description: "Flutter SDK for secure background health data synchronization from Apple HealthKit (iOS) and Samsung Health / Health Connect (Android) to the Open Wearables platform."
-version: 0.0.23
+version: 0.0.24
 homepage: https://openwearables.io
-repository: https://github.com/the-momentum/open_wearables_health_sdk
-issue_tracker: https://github.com/the-momentum/open_wearables_health_sdk/issues
+repository: https://github.com/hosseinzare1/open_wearables_health_sdk
+issue_tracker: https://github.com/hosseinzare1/open_wearables_health_sdk/issues
 topics:
   - health
   - healthkit
@@ -12,8 +12,8 @@ topics:
   - background-sync
 
 environment:
-  sdk: ^3.9.2
-  flutter: '>=3.3.0'
+  sdk: ^3.12.0
+  flutter: '>=3.44.0'
 
 dependencies:
   flutter:

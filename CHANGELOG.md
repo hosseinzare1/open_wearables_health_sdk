@@ -1,5 +1,10 @@
 ## Unreleased
 
+## 0.0.25
+
+* Adds Swift Package Manager support for iOS (Flutter 3.44+), alongside the existing CocoaPods podspec.
+* Restructures native iOS sources under `ios/open_wearables_health_sdk/Sources/open_wearables_health_sdk/`.
+
 ## 0.0.24
 
 * Migrates the Android Gradle build to AGP 9 built-in Kotlin (removes the legacy `kotlin-android` plugin).

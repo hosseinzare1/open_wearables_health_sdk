@@ -1,0 +1,39 @@
+// swift-tools-version: 5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "open_wearables_health_sdk",
+    platforms: [
+        .iOS("15.0"),
+    ],
+    products: [
+        .library(name: "open-wearables-health-sdk", targets: ["open_wearables_health_sdk"]),
+    ],
+    dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework"),
+        .package(
+            name: "OpenWearablesHealthSDK",
+            url: "https://github.com/the-momentum/open_wearables_ios_sdk",
+            from: "0.15.0"
+        ),
+    ],
+    targets: [
+        .target(
+            name: "open_wearables_health_sdk",
+            dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework"),
+                .product(name: "OpenWearablesHealthSDK", package: "OpenWearablesHealthSDK"),
+            ],
+            resources: [
+                .process("PrivacyInfo.xcprivacy"),
+            ],
+            linkerSettings: [
+                .linkedFramework("HealthKit"),
+                .linkedFramework("BackgroundTasks"),
+                .linkedFramework("UIKit"),
+            ]
+        ),
+    ]
+)
